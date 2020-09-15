@@ -19,12 +19,6 @@ import java.util.concurrent.Executors;
 
 public class WeatherLoader {
     private Context context;
-   /* private String city;
-    private int temp;
-    private int tempLike;
-    private String main;
-    private int tempMin;
-    private int tempMax;*/
     private String city;
     private Weather weather;
     private String weatherJson;
@@ -36,7 +30,8 @@ public class WeatherLoader {
 
     private void LoadWeather(){
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = "https://api.openweathermap.org/data/2.5/weather?q="+ city + "&appid=ab97ee87fab73245cb3facce70d1432b";
+        Token t = new Token();
+        String url = "https://api.openweathermap.org/data/2.5/weather?q="+ city + "&appid=" + t.token;
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -77,7 +72,11 @@ public class WeatherLoader {
             }
         });
         while(weather.city == null){
-
+            try {
+                Thread.sleep(250);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         return weather;
     }

@@ -14,5 +14,4 @@ public class Weather {
     public void setMain(String main){this.main = main;}
     public void setTempMin(int tempMin){this.tempMin = tempMin;}
     public void setTempMax(int tempMax){this.tempMax = tempMax;}
-    public String getCity(){return  city;}
 }
