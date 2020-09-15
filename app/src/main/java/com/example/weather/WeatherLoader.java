@@ -41,7 +41,7 @@ public class WeatherLoader {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "Something wrong", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Такого города нет в базе, приносим свои извинения.", Toast.LENGTH_LONG).show();
             }
         });
         queue.add(request);
