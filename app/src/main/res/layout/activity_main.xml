@@ -7,6 +7,18 @@
     android:id="@+id/parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cityName"
+        app:layout_constraintBottom_toTopOf="@id/skyImage"
+        app:layout_constraintLeft_toLeftOf="@id/skyImage"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintRight_toRightOf="@id/tempField"
+        android:textSize="50sp"
+        android:textColor="@color/colorAccent"
+        android:gravity="center"/>
+
     <ImageView
         android:id="@+id/skyImage"
         android:layout_width="125dp"

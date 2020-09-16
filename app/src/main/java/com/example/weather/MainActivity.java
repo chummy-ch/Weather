@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     public Button find;
     public Handler handler;
     public ConstraintLayout parent;
+    public TextView city;
 
 
     @Override
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         minMaxTemp = findViewById(R.id.max_minField);
         find = findViewById(R.id.button);
         field = findViewById(R.id.field);
+        city = findViewById(R.id.cityName);
         context = MainActivity.this;
         parent = findViewById(R.id.parent);
         final View.OnClickListener findWeather = new View.OnClickListener() {
@@ -86,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 minMaxTemp.setText(String.valueOf(weather.tempMax) + " / " + String.valueOf(weather.tempMin));
                 desc.setText(weather.description + "\n" + "Wind speed: " + String.valueOf(weather.speed));
                 sky.setBackgroundResource(weather.weatherImage);
+                city.setText(weather.city.toUpperCase());
             }
         };
     }
@@ -97,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 WeatherLoader weatherLoader = new WeatherLoader(field.getText().toString(), context);
                 Weather weather = weatherLoader.GetWeather();
-                temp.setText("Hello world");
                 Message msg = handler.obtainMessage(0, weather);
                 handler.sendMessage(msg);
 
