@@ -6,16 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
+    <ImageView
+        android:id="@+id/skyImage"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        app:layout_constraintLeft_toLeftOf="@id/field"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="200dp"/>
 
     <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/tempField"
+        android:textSize="40sp"
+        android:layout_width="125dp"
+        android:layout_height="65dp"
+        android:gravity="center"
+        app:layout_constraintLeft_toRightOf="@id/skyImage"
+        app:layout_constraintTop_toTopOf="@id/skyImage"
+        android:layout_marginLeft="25dp"/>
+
+    <TextView
+        android:id="@+id/max_minField"
+        android:layout_width="125dp"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:layout_height="60dp"
+        app:layout_constraintLeft_toRightOf="@id/skyImage"
+        app:layout_constraintBottom_toBottomOf="@id/skyImage"
+        android:layout_marginLeft="25dp"/>
+
+    <TextView
+        android:id="@+id/decs"
+        android:textSize="30sp"
+        android:layout_width="275dp"
+        android:layout_height="75dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/skyImage"
+        app:layout_constraintLeft_toLeftOf="@id/skyImage"
+        android:layout_marginTop="35dp"/>
 
     <EditText
         android:id="@+id/field"

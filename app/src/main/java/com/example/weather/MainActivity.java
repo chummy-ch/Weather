@@ -1,14 +1,22 @@
 package com.example.weather;
 
+import androidx.annotation.MainThread;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DownloadManager;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.icu.text.UnicodeSetSpanner;
+import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.TokenWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,26 +42,45 @@ import java.util.concurrent.Executors;
 
 
 public class MainActivity extends AppCompatActivity {
-    public TextView text;
-    public Context context = this;
+    public TextView desc;
+    public ImageView sky;
+    public TextView temp;
+    public TextView minMaxTemp;
+    public Context context;
     public EditText field;
     public Button find;
+    public Handler handler;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        text = findViewById(R.id.tv);
+        sky = findViewById(R.id.skyImage);
+        desc = findViewById(R.id.decs);
+        temp = findViewById(R.id.tempField);
+        minMaxTemp = findViewById(R.id.max_minField);
         find = findViewById(R.id.button);
         field = findViewById(R.id.field);
+        context = MainActivity.this;
         final View.OnClickListener findWeather = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (field.getText().toString().trim().length() > 2)
                 FindWeather();
+                else Toast.makeText(context, "Fill the field", Toast.LENGTH_LONG).show();
             }
         };
         find.setOnClickListener(findWeather);
+        handler = new Handler(){
+            public void handleMessage(Message msg){
+                Weather weather = (Weather)msg.obj;
+                temp.setText(String.valueOf(weather.temp));
+                minMaxTemp.setText(String.valueOf(weather.tempMax) + " / " + String.valueOf(weather.tempMin));
+                desc.setText(weather.description + "\n" + "Wind speed: " + String.valueOf(weather.speed));
+                sky.setImageResource(R.drawable.sun);
+            }
+        };
     }
 
     public void FindWeather(){
@@ -61,14 +88,17 @@ public class MainActivity extends AppCompatActivity {
         service.submit(new Runnable() {
             @Override
             public void run() {
-                if (field.getText().toString().trim().length() > 2){
-                    WeatherLoader weatherLoader = new WeatherLoader(field.getText().toString(), context);
-                    Weather weather = weatherLoader.GetWeather();
-                    Gson gson = new Gson();
-                    String weatherString = gson.toJson(weather);
-                    text.setText(weatherString);
-                }
-                else Toast.makeText(context, "Fill the field", Toast.LENGTH_LONG).show();
+                WeatherLoader weatherLoader = new WeatherLoader(field.getText().toString(), context);
+                Weather weather = weatherLoader.GetWeather();
+                temp.setText("Hello world");
+                Message msg = handler.obtainMessage(0, weather);
+                handler.sendMessage(msg);
+                    /*temp.setText(String.valueOf(weather.temp));
+                    minMaxTemp.setText(String.valueOf(weather.tempMax) + " / " + String.valueOf(weather.tempMin));
+                    desc.setText(weather.description + "\n" + "Wind speed: " + String.valueOf(weather.speed));
+                    sky.setImageResource(R.drawable.sun);*/
+                   /* LoadUI ui = new LoadUI(weather, desc, temp, minMaxTemp, sky);
+                    ui.Loading();*/
             }
         });
     }
