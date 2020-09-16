@@ -2,6 +2,7 @@ package com.example.weather;
 
 import androidx.annotation.MainThread;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.DownloadManager;
 import android.content.Context;
@@ -13,9 +14,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.TokenWatcher;
+import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     public EditText field;
     public Button find;
     public Handler handler;
+    public ConstraintLayout parent;
 
 
     @Override
@@ -63,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         find = findViewById(R.id.button);
         field = findViewById(R.id.field);
         context = MainActivity.this;
+        parent = findViewById(R.id.parent);
         final View.OnClickListener findWeather = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,13 +100,10 @@ public class MainActivity extends AppCompatActivity {
                 temp.setText("Hello world");
                 Message msg = handler.obtainMessage(0, weather);
                 handler.sendMessage(msg);
-                    /*temp.setText(String.valueOf(weather.temp));
-                    minMaxTemp.setText(String.valueOf(weather.tempMax) + " / " + String.valueOf(weather.tempMin));
-                    desc.setText(weather.description + "\n" + "Wind speed: " + String.valueOf(weather.speed));
-                    sky.setImageResource(R.drawable.sun);*/
-                   /* LoadUI ui = new LoadUI(weather, desc, temp, minMaxTemp, sky);
-                    ui.Loading();*/
+
             }
         });
     }
+
+
 }
