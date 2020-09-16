@@ -56,6 +56,8 @@ public class WeatherLoader {
             weather.setTempLike((int) (Float.parseFloat(jsonObject.getJSONObject("main").getString("feels_like")) - 273.15));
             weather.setTempMax((int) (Float.parseFloat(jsonObject.getJSONObject("main").getString("temp_max")) - 273.15));
             weather.setTempMin((int) (Float.parseFloat(jsonObject.getJSONObject("main").getString("temp_min")) - 273.15));
+            weather.setSpeed(Float.parseFloat(jsonObject.getJSONObject("wind").getString("speed")));
+            weather.setDescription(weatherJsonArray.getJSONObject(0).getString("description"));
             weather.setCity(city);
         } catch (JSONException e) {
             e.printStackTrace();
