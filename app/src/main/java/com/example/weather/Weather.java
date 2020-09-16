@@ -9,6 +9,7 @@ public class Weather {
     public String main;
     public String description;
     public float speed;
+    public int weatherImage;
 
     public void setCity(String city){this.city = city;}
 
@@ -25,4 +26,6 @@ public class Weather {
     public void setSpeed(float speed){this.speed = speed;}
 
     public void setDescription(String description){this.description = description;}
+
+    public void setWeatherImage(int image){weatherImage = image;}
 }

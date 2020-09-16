@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 temp.setText(String.valueOf(weather.temp));
                 minMaxTemp.setText(String.valueOf(weather.tempMax) + " / " + String.valueOf(weather.tempMin));
                 desc.setText(weather.description + "\n" + "Wind speed: " + String.valueOf(weather.speed));
-                sky.setImageResource(R.drawable.sun);
+                sky.setBackgroundResource(weather.weatherImage);
             }
         };
     }

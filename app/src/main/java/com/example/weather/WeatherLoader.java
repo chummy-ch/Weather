@@ -14,6 +14,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -22,10 +24,12 @@ public class WeatherLoader {
     private String city;
     private Weather weather;
     private String weatherJson;
+    private HashMap<String, Integer> images;
 
     public WeatherLoader(String city, Context context){
         this.context = context;
         this.city = city;
+        images = new HashMap<String, Integer>(){{put("Clear", R.drawable.sun); put("Rain", R.drawable.rain); put("Snow", R.drawable.snowy);}};
     }
 
     private void LoadWeather(){
@@ -59,6 +63,8 @@ public class WeatherLoader {
             weather.setSpeed(Float.parseFloat(jsonObject.getJSONObject("wind").getString("speed")));
             weather.setDescription(weatherJsonArray.getJSONObject(0).getString("description"));
             weather.setCity(city);
+            if(images.containsKey(weather.main)) weather.weatherImage = images.get(weather.main);
+            else weather.weatherImage = R.drawable.cloud;
         } catch (JSONException e) {
             e.printStackTrace();
         }
