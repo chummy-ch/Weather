@@ -9,11 +9,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
@@ -31,6 +37,8 @@ public class WeatherLoader {
         this.city = city;
         images = new HashMap<String, Integer>(){{put("Clear", R.drawable.sun); put("Rain", R.drawable.rain); put("Snow", R.drawable.snowy);}};
     }
+
+    public WeatherLoader(Context context){this.context = context;}
 
     private void LoadWeather(){
         RequestQueue queue = Volley.newRequestQueue(context);
@@ -65,6 +73,7 @@ public class WeatherLoader {
             weather.setCity(city);
             if(images.containsKey(weather.main)) weather.weatherImage = images.get(weather.main);
             else weather.weatherImage = R.drawable.cloud;
+            SWeather();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -85,6 +94,37 @@ public class WeatherLoader {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+        return weather;
+    }
+
+    public void SWeather(){
+        String jsonString = new Gson().toJson(weather);
+        try{
+            String filePath = context.getFilesDir().getPath().toString() + "weather.txt";
+            FileWriter file = new FileWriter(filePath);
+            file.write(jsonString);
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Weather LWeather(){
+        try{
+            String filePath = context.getFilesDir().getPath().toString() + "weather.txt";
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            String line;
+            StringBuffer stringBuffer = new StringBuffer();
+            while ((line = br.readLine()) != null) {
+                stringBuffer.append(line);
+            }
+            weather = new Weather();
+            weather = new Gson().fromJson(stringBuffer.toString(), weather.getClass());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return weather;
     }

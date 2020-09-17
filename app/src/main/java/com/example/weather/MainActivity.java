@@ -8,6 +8,7 @@ import android.app.DownloadManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.icu.text.LocaleDisplayNames;
 import android.icu.text.UnicodeSetSpanner;
 import android.media.Image;
 import android.os.Bundle;
@@ -91,6 +92,20 @@ public class MainActivity extends AppCompatActivity {
                 city.setText(weather.city.toUpperCase());
             }
         };
+        Thread working = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                LoadWeather();
+            }
+        });
+        working.start();
+    }
+
+    public void LoadWeather(){
+                WeatherLoader wl = new WeatherLoader(context);
+                Weather weather = wl.LWeather();
+                Message msg = handler.obtainMessage(0, weather);
+                handler.sendMessage(msg);
     }
 
     public void FindWeather(){
@@ -107,5 +122,5 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
+    }
 }
