@@ -4,6 +4,7 @@ import androidx.annotation.MainThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.ActionBar;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -64,7 +65,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        sky = findViewById(R.id.skyImage);
+        setContentView(R.layout.acivity_weather);
+        getSupportActionBar().setTitle("КИЕВ");
+
+
+        /*sky = findViewById(R.id.skyImage);
         desc = findViewById(R.id.decs);
         temp = findViewById(R.id.tempField);
         minMaxTemp = findViewById(R.id.max_minField);
@@ -98,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 LoadWeather();
             }
         });
-        working.start();
+        working.start();*/
     }
 
     public void LoadWeather(){
