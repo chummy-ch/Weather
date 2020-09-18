@@ -85,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
         handler = new Handler(){
             public void handleMessage(Message msg){
                 Weather weather = (Weather)msg.obj;
-                temp.setText(String.valueOf(weather.temp));
-                minMaxTemp.setText(String.valueOf(weather.tempMax) + " / " + String.valueOf(weather.tempMin));
-                desc.setText(weather.description + "\n" + "Wind speed: " + String.valueOf(weather.speed));
+                temp.setText(String.valueOf(weather.temp) + "°С");
+                minMaxTemp.setText(String.valueOf(weather.tempMax) + "°С / " + String.valueOf(weather.tempMin) + "°С");
+                desc.setText(weather.description + "\n" + "Wind speed: " + String.valueOf(weather.speed) + " m/s");
                 sky.setBackgroundResource(weather.weatherImage);
                 city.setText(weather.city.toUpperCase());
             }
