@@ -104,9 +104,14 @@ public class MainActivity extends AppCompatActivity {
     public void LoadWeather(){
                 WeatherLoader wl = new WeatherLoader(context);
                 Weather weather = wl.LWeather();
+                if(weather == null) return;
                 Message msg = handler.obtainMessage(0, weather);
                 handler.sendMessage(msg);
-    }
+                wl = new WeatherLoader(weather.city, context);
+                weather = wl.GetWeather();
+                msg = handler.obtainMessage(0, weather);
+                handler.sendMessage(msg);
+;    }
 
     public void FindWeather(){
         ExecutorService service = Executors.newSingleThreadExecutor();

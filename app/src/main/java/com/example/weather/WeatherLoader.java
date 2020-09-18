@@ -1,6 +1,8 @@
 package com.example.weather;
 
 import android.content.Context;
+import android.icu.text.UnicodeSetSpanner;
+import android.os.Looper;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -16,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -113,6 +116,8 @@ public class WeatherLoader {
     public Weather LWeather(){
         try{
             String filePath = context.getFilesDir().getPath().toString() + "weather.txt";
+            File f = new File(filePath);
+            if(!f.exists()) return null;
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             String line;
             StringBuffer stringBuffer = new StringBuffer();
