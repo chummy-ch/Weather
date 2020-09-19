@@ -1,11 +1,12 @@
 package com.example.weather;
 
 import androidx.annotation.MainThread;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.app.ActionBar;
 import android.app.DownloadManager;
+import android.content.ClipData;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,9 +18,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.TokenWatcher;
 import android.view.Display;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -48,7 +51,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements  ActionBar.OnNavigationListener{
     public TextView desc;
     public ImageView sky;
     public TextView temp;
@@ -61,12 +64,13 @@ public class MainActivity extends AppCompatActivity {
     public TextView humidity;
     public TextView windSpeed;
 
+    String[] data = new String[] { "КИЕВ", "ЗАПОРОЖЬЕ", "ХАРЬКОВ" };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         windSpeed = findViewById(R.id.windTv);
         humidity = findViewById(R.id.waterTv);
         pressure = findViewById(R.id.pressureTv);
@@ -77,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         field = findViewById(R.id.edit);
         context = MainActivity.this;
         parent = findViewById(R.id.parent);
-
+        getSupportActionBar().setTitle("");
         final View.OnClickListener findWeather = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 else Toast.makeText(context, "Fill the field", Toast.LENGTH_LONG).show();
             }
         };
+
 
         find.setOnClickListener(findWeather);
 
@@ -96,12 +101,11 @@ public class MainActivity extends AppCompatActivity {
                 desc.setText(weather.description);
                 windSpeed.setText(weather.speed + "m/s");
                 sky.setBackgroundResource(weather.weatherImage);
-                getSupportActionBar().setTitle(weather.city.toUpperCase());
+                /*getSupportActionBar().setTitle(weather.city.toUpperCase());*/
                 pressure.setText(weather.pressure + " hpa");
                 humidity.setText(weather.humidity + "%");
             }
         };
-
         Thread working = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -109,6 +113,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         working.start();
+
+        SetMenu();
+    }
+
+    public void SetMenu(){
+        ActionBar bar = getSupportActionBar();
+        bar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.support_simple_spinner_dropdown_item, data);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        bar.setListNavigationCallbacks(adapter, this);
     }
 
     public void LoadWeather(){
@@ -135,5 +149,22 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+        final int itempos = itemPosition;
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.submit(new Runnable() {
+            @Override
+            public void run() {
+                Weather weather = new Weather();
+                WeatherLoader wl = new WeatherLoader(data[itempos], context);
+                weather = wl.GetWeather();
+                Message msg = weatherHandler.obtainMessage(0, weather);
+                weatherHandler.sendMessage(msg);
+            }
+        });
+        return true;
     }
 }
