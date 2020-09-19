@@ -73,6 +73,8 @@ public class WeatherLoader {
             weather.setTempMin((int) (Float.parseFloat(jsonObject.getJSONObject("main").getString("temp_min")) - 273.15));
             weather.setSpeed(Float.parseFloat(jsonObject.getJSONObject("wind").getString("speed")));
             weather.setDescription(weatherJsonArray.getJSONObject(0).getString("description"));
+            weather.setPressure(jsonObject.getJSONObject("main").getString("pressure"));
+            weather.setHumidity(jsonObject.getJSONObject("main").getString("humidity"));
             weather.setCity(city);
             if(images.containsKey(weather.main)) weather.weatherImage = images.get(weather.main);
             else weather.weatherImage = R.drawable.cloud;

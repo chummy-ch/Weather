@@ -52,70 +52,75 @@ public class MainActivity extends AppCompatActivity {
     public TextView desc;
     public ImageView sky;
     public TextView temp;
-    public TextView minMaxTemp;
     public Context context;
     public EditText field;
     public Button find;
-    public Handler handler;
+    public Handler weatherHandler;
     public ConstraintLayout parent;
-    public TextView city;
+    public TextView pressure;
+    public TextView humidity;
+    public TextView windSpeed;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setContentView(R.layout.acivity_weather);
-        getSupportActionBar().setTitle("КИЕВ");
 
-
-        /*sky = findViewById(R.id.skyImage);
-        desc = findViewById(R.id.decs);
-        temp = findViewById(R.id.tempField);
-        minMaxTemp = findViewById(R.id.max_minField);
+        windSpeed = findViewById(R.id.windTv);
+        humidity = findViewById(R.id.waterTv);
+        pressure = findViewById(R.id.pressureTv);
+        sky = findViewById(R.id.weatherImage);
+        desc = findViewById(R.id.disc);
+        temp = findViewById(R.id.temp);
         find = findViewById(R.id.button);
-        field = findViewById(R.id.field);
-        city = findViewById(R.id.cityName);
+        field = findViewById(R.id.edit);
         context = MainActivity.this;
         parent = findViewById(R.id.parent);
+
         final View.OnClickListener findWeather = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (field.getText().toString().trim().length() > 2)
-                FindWeather();
+                    FindWeather();
                 else Toast.makeText(context, "Fill the field", Toast.LENGTH_LONG).show();
             }
         };
+
         find.setOnClickListener(findWeather);
-        handler = new Handler(){
+
+        weatherHandler = new Handler(){
             public void handleMessage(Message msg){
-                Weather weather = (Weather)msg.obj;
+                Weather weather = (Weather) msg.obj;
                 temp.setText(String.valueOf(weather.temp) + "°С");
-                minMaxTemp.setText(String.valueOf(weather.tempMax) + "°С / " + String.valueOf(weather.tempMin) + "°С");
-                desc.setText(weather.description + "\n" + "Wind speed: " + String.valueOf(weather.speed) + " m/s");
+                desc.setText(weather.description);
+                windSpeed.setText(weather.speed + "m/s");
                 sky.setBackgroundResource(weather.weatherImage);
-                city.setText(weather.city.toUpperCase());
+                getSupportActionBar().setTitle(weather.city.toUpperCase());
+                pressure.setText(weather.pressure + " hpa");
+                humidity.setText(weather.humidity + "%");
             }
         };
+
         Thread working = new Thread(new Runnable() {
             @Override
             public void run() {
                 LoadWeather();
             }
         });
-        working.start();*/
+        working.start();
     }
 
     public void LoadWeather(){
                 WeatherLoader wl = new WeatherLoader(context);
                 Weather weather = wl.LWeather();
                 if(weather == null) return;
-                Message msg = handler.obtainMessage(0, weather);
-                handler.sendMessage(msg);
+                Message msg = weatherHandler.obtainMessage(0, weather);
+                weatherHandler.sendMessage(msg);
                 wl = new WeatherLoader(weather.city, context);
                 weather = wl.GetWeather();
-                msg = handler.obtainMessage(0, weather);
-                handler.sendMessage(msg);
+                msg = weatherHandler.obtainMessage(0, weather);
+                weatherHandler.sendMessage(msg);
 ;    }
 
     public void FindWeather(){
@@ -125,8 +130,8 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 WeatherLoader weatherLoader = new WeatherLoader(field.getText().toString(), context);
                 Weather weather = weatherLoader.GetWeather();
-                Message msg = handler.obtainMessage(0, weather);
-                handler.sendMessage(msg);
+                Message msg = weatherHandler.obtainMessage(0, weather);
+                weatherHandler.sendMessage(msg);
 
             }
         });

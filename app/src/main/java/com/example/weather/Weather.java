@@ -10,6 +10,12 @@ public class Weather {
     public String description;
     public float speed;
     public int weatherImage;
+    public String pressure;
+    public String humidity;
+
+    public void setHumidity(String humidity){this.humidity = humidity;}
+
+    public void setPressure(String pressure){this.pressure = pressure;}
 
     public void setCity(String city){this.city = city;}
 

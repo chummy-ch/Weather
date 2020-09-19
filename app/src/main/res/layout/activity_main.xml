@@ -1,80 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/parent"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cityName"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/skyImage"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:textSize="50sp"
-        android:textColor="#FFFFFF"
-        android:gravity="center"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent">
 
     <ImageView
-        android:id="@+id/skyImage"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
-        app:layout_constraintLeft_toLeftOf="@id/decs"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="200dp"/>
-
-    <TextView
-        android:id="@+id/tempField"
-        android:textColor="#000000"
-        android:typeface="monospace"
-        android:textSize="55sp"
-        android:layout_width="125dp"
-        android:layout_height="65dp"
-        android:gravity="center"
-        app:layout_constraintLeft_toRightOf="@id/skyImage"
-        app:layout_constraintTop_toTopOf="@id/skyImage"
-        android:layout_marginLeft="25dp"/>
-
-    <TextView
-        android:id="@+id/max_minField"
-        android:layout_width="175dp"
-        android:textColor="#000000"
-        android:gravity="center"
-        android:textSize="25sp"
-        android:layout_height="60dp"
-        app:layout_constraintLeft_toRightOf="@id/skyImage"
-        app:layout_constraintBottom_toBottomOf="@id/skyImage"
-        android:layout_marginLeft="25dp"/>
-
-    <TextView
-        android:id="@+id/decs"
-        android:textSize="30sp"
-        android:textColor="#000000"
-        android:layout_width="wrap_content"
-        android:layout_height="75dp"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/skyImage"
+        android:id="@+id/weatherImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="35dp"/>
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/disc"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/weatherImage"
+        app:layout_constraintLeft_toLeftOf="@id/weatherImage"
+        app:layout_constraintRight_toRightOf="@id/weatherImage"/>
+
+    <TextView
+        android:id="@+id/temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/weatherImage"
+        app:layout_constraintRight_toRightOf="@id/weatherImage"
+        app:layout_constraintTop_toBottomOf="@id/disc"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pressureIm"
+        android:text="🌡"
+        android:textSize="25sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/temp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="40dp"
+        />
+
+    <TextView
+        android:id="@+id/pressureTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/pressureIm"
+        app:layout_constraintTop_toTopOf="@id/pressureIm"
+        app:layout_constraintLeft_toRightOf="@id/pressureIm"/>
+
+    <TextView
+        android:id="@+id/waterIm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="💧"
+        android:textSize="25sp"
+        app:layout_constraintTop_toTopOf="@id/pressureIm"
+        app:layout_constraintBottom_toBottomOf="@id/pressureIm"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="15dp" />
+
+    <TextView
+        android:id="@+id/waterTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/waterIm"
+        app:layout_constraintTop_toTopOf="@id/waterIm"
+        app:layout_constraintLeft_toRightOf="@id/waterIm"/>
+
+    <TextView
+        android:id="@+id/windIm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="🌬"
+        app:layout_constraintTop_toTopOf="@id/pressureIm"
+        app:layout_constraintBottom_toBottomOf="@id/pressureIm"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="70dp"/>
+
+
+    <TextView
+        android:id="@+id/windTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/windIm"
+        app:layout_constraintTop_toTopOf="@id/windIm"
+        app:layout_constraintLeft_toRightOf="@id/windIm"/>
 
     <EditText
-        android:id="@+id/field"
-        android:textColor="#000000"
-        android:layout_width="215dp"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
+        android:id="@+id/edit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/decs"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
     <Button
-        android:id="@+id/button"
-        android:layout_width="60dp"
+        android:layout_width="50dp"
         android:layout_height="50dp"
-        app:layout_constraintRight_toRightOf="@id/decs"
+        android:id="@+id/button"
+        app:layout_constraintLeft_toRightOf="@id/edit"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 
