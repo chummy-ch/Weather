@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements  ActionBar.OnNavi
             @Override
             public void onClick(View view) {
                 if (field.getText().toString().trim().length() > 2)
-                    FindWeather();
+                    FindWeather(field.getText().toString());
                 else Toast.makeText(context, "Fill the field", Toast.LENGTH_LONG).show();
             }
         };
@@ -131,18 +131,16 @@ public class MainActivity extends AppCompatActivity implements  ActionBar.OnNavi
                 if(weather == null) return;
                 Message msg = weatherHandler.obtainMessage(0, weather);
                 weatherHandler.sendMessage(msg);
-                wl = new WeatherLoader(weather.city, context);
-                weather = wl.GetWeather();
-                msg = weatherHandler.obtainMessage(0, weather);
-                weatherHandler.sendMessage(msg);
+                FindWeather(weather.city);
 ;    }
 
-    public void FindWeather(){
+    public void FindWeather(String city){
+        final String c = city;
         ExecutorService service = Executors.newSingleThreadExecutor();
         service.submit(new Runnable() {
             @Override
             public void run() {
-                WeatherLoader weatherLoader = new WeatherLoader(field.getText().toString(), context);
+                WeatherLoader weatherLoader = new WeatherLoader(c, context);
                 Weather weather = weatherLoader.GetWeather();
                 Message msg = weatherHandler.obtainMessage(0, weather);
                 weatherHandler.sendMessage(msg);
@@ -158,11 +156,7 @@ public class MainActivity extends AppCompatActivity implements  ActionBar.OnNavi
         service.submit(new Runnable() {
             @Override
             public void run() {
-                Weather weather = new Weather();
-                WeatherLoader wl = new WeatherLoader(data[itempos], context);
-                weather = wl.GetWeather();
-                Message msg = weatherHandler.obtainMessage(0, weather);
-                weatherHandler.sendMessage(msg);
+                FindWeather(data[itempos]);
             }
         });
         return true;
