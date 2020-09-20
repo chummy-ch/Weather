@@ -3,6 +3,8 @@ package com.example.weather;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             WeatherLoader loader = new WeatherLoader(field.getText().toString(), context);
                             loader.GetWeather();
+                            CitiesList list = new CitiesList(context, getSupportActionBar());
+                            list.DisplayCity(field.getText().toString().toUpperCase());
                         }
                     });
                 }
@@ -47,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        CitiesList list = new CitiesList(this, getSupportActionBar());
+        final CitiesList list = new CitiesList(this, getSupportActionBar());
         list.SetMenu();
 
         find.setOnClickListener(findWeather);
@@ -56,9 +60,33 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 WeatherLoader load = new WeatherLoader(context);
-                load.LWeather();
+                String city = load.LWeather();
+                if(city != null) {
+                    list.DisplayCity(city);
+                }
             }
         });
         working.start();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // R.menu.mymenu is a reference to an xml file named mymenu.xml which should be inside your res/menu directory.
+        // If you don't have res/menu, just create a directory named "menu" inside res
+        getMenuInflater().inflate(R.menu.cities, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // handle button activities
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.addCity) {
+            if(field.getText().toString().length() < 2) return false;
+            CitiesList list = new CitiesList(context, getSupportActionBar());
+            list.AddCity(field.getText().toString().toUpperCase());
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

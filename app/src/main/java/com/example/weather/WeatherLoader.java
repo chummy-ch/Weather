@@ -122,11 +122,11 @@ public class WeatherLoader {
         }
     }
 
-    public void LWeather(){
+    public String LWeather(){
         try{
             String filePath = context.getFilesDir().getPath().toString() + "weather.txt";
             File f = new File(filePath);
-            if(!f.exists()) return;
+            if(!f.exists()) return null;
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             String line;
             StringBuffer stringBuffer = new StringBuffer();
@@ -143,5 +143,6 @@ public class WeatherLoader {
         UIManager ui = new UIManager();
         Handler handler = ui.GetWeatherHandler();
         handler.sendMessage( handler.obtainMessage(0,  weather));
+        return weather.city;
     }
 }
