@@ -13,7 +13,7 @@ public class CitiesList implements  ActionBar.OnNavigationListener{
     private Context context;
     private ActionBar bar;
 
-    public CitiesList(Context context, ActionBar bat){
+    public CitiesList(Context context, ActionBar bar){
         this.bar = bar;
         this.context = context;
     }
@@ -32,7 +32,8 @@ public class CitiesList implements  ActionBar.OnNavigationListener{
         service.submit(new Runnable() {
             @Override
             public void run() {
-                /*FindWeather(data[itempos]);*/
+                WeatherLoader loader = new WeatherLoader(data[itempos], context);
+                loader.GetWeather();
             }
         });
         return true;

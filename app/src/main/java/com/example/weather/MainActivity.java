@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        CitiesList list = new CitiesList(this, getSupportActionBar());
+        list.SetMenu();
 
         find.setOnClickListener(findWeather);
 
