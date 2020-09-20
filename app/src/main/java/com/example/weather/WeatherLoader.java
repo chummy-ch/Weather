@@ -2,7 +2,10 @@ package com.example.weather;
 
 import android.content.Context;
 import android.icu.text.UnicodeSetSpanner;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
+import android.provider.Contacts;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -42,6 +45,7 @@ public class WeatherLoader {
     }
 
     public WeatherLoader(Context context){this.context = context;}
+
 
     private void LoadWeather(){
         RequestQueue queue = Volley.newRequestQueue(context);
@@ -84,7 +88,8 @@ public class WeatherLoader {
         }
     }
 
-    public Weather GetWeather(){
+    public void GetWeather(){
+        UIManager ui = new UIManager();
         weather = new Weather();
         ExecutorService ser = Executors.newSingleThreadExecutor();
         ser.submit(new Runnable() {
@@ -100,7 +105,9 @@ public class WeatherLoader {
                 e.printStackTrace();
             }
         }
-        return weather;
+        Handler handler = ui.GetWeatherHandler();
+        Message msg = handler.obtainMessage(0, weather);
+        handler.sendMessage(msg);
     }
 
     public void SWeather(){
@@ -115,11 +122,11 @@ public class WeatherLoader {
         }
     }
 
-    public Weather LWeather(){
+    public void LWeather(){
         try{
             String filePath = context.getFilesDir().getPath().toString() + "weather.txt";
             File f = new File(filePath);
-            if(!f.exists()) return null;
+            if(!f.exists()) return;
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             String line;
             StringBuffer stringBuffer = new StringBuffer();
@@ -133,6 +140,8 @@ public class WeatherLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return weather;
+        UIManager ui = new UIManager();
+        Handler handler = ui.GetWeatherHandler();
+        handler.sendMessage( handler.obtainMessage(0,  weather));
     }
 }
