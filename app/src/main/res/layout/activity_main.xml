@@ -8,20 +8,44 @@
     android:id="@+id/parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:foregroundGravity="center"
-        android:background="@drawable/custom_actionbar"
         android:id="@+id/action_bar"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/custom_actionbar"
+        android:foregroundGravity="center"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/round_view"
+            android:text="SAVE CITY"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:foreground="@android:drawable/ic_menu_search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/weatherImage"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:background="@null"
+        android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/action_bar"/>
@@ -153,7 +177,7 @@
         android:layout_marginBottom="10dp"/>-->
 
     <Spinner
-        android:layout_width="125dp"
+        android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:background="@android:color/transparent"
         android:id="@+id/spinner"
