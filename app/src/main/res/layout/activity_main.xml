@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradient_view"
     android:id="@+id/parent">
 
     <ImageView
@@ -11,6 +12,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="50dp"
+        android:background="@null"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -19,6 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/disc"
+        android:background="@null"
         android:textSize="25sp"
         android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@id/weatherImage"
@@ -31,6 +34,7 @@
         android:layout_height="wrap_content"
         android:textSize="50sp"
         android:textStyle="bold"
+        android:background="@null"
         app:layout_constraintLeft_toLeftOf="@id/weatherImage"
         app:layout_constraintRight_toRightOf="@id/weatherImage"
         app:layout_constraintTop_toBottomOf="@id/disc"
@@ -41,6 +45,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/pressureIm"
         android:text="🌡"
+        android:background="@null"
         android:textSize="25sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/temp"
@@ -51,6 +56,7 @@
     <TextView
         android:id="@+id/pressureTv"
         android:layout_width="wrap_content"
+        android:background="@null"
         android:layout_height="wrap_content"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/pressureIm"
@@ -60,6 +66,7 @@
     <TextView
         android:id="@+id/waterIm"
         android:layout_width="wrap_content"
+        android:background="@null"
         android:layout_height="wrap_content"
         android:text="💧"
         android:textSize="25sp"
@@ -72,6 +79,7 @@
     <TextView
         android:id="@+id/waterTv"
         android:layout_width="wrap_content"
+        android:background="@null"
         android:layout_height="wrap_content"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/waterIm"
@@ -82,6 +90,7 @@
         android:id="@+id/windIm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@null"
         android:textSize="25sp"
         android:text="🌬"
         app:layout_constraintTop_toTopOf="@id/pressureIm"
@@ -93,15 +102,30 @@
     <TextView
         android:id="@+id/windTv"
         android:layout_width="wrap_content"
+        android:background="@null"
         android:layout_height="wrap_content"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/windIm"
         app:layout_constraintTop_toTopOf="@id/windIm"
         app:layout_constraintLeft_toRightOf="@id/windIm"/>
 
+    <TextView
+        android:layout_width="250dp"
+        android:gravity="center"
+        android:layout_height="40dp"
+        android:id="@+id/moreWeather"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/edit"
+        app:layout_constraintTop_toBottomOf="@id/windIm"
+        android:text="3 days forecast"
+        android:background="@drawable/round_view"
+        android:textSize="20sp"/>
+
     <EditText
         android:layout_width="175dp"
         android:layout_height="wrap_content"
+        android:background="@null"
         android:id="@+id/edit"
         android:hint="City name"
         android:layout_marginBottom="5dp"

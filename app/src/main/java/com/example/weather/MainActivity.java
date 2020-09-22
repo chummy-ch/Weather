@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     public Context context;
     public TextView field;
     public Button find;
+    public TextView moreWeather;
 
 
     @Override
@@ -27,10 +28,20 @@ public class MainActivity extends AppCompatActivity {
         find = findViewById(R.id.button);
         field = findViewById(R.id.edit);
         context = this;
+        moreWeather = findViewById(R.id.moreWeather);
 
         getSupportActionBar().setTitle("");
 
         UIActivity uiActivity = new UIActivity(this);
+
+        View.OnClickListener moreW = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setContentView(R.layout.weather_layout);
+            }
+        };
+
+        moreWeather.setOnClickListener(moreW);
 
         final View.OnClickListener findWeather = new View.OnClickListener() {
             @Override
