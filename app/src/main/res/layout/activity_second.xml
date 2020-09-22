@@ -9,6 +9,8 @@
     <TextView
         android:id="@+id/firsDate"
         android:layout_width="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#06506F"
         app:layout_constraintBottom_toTopOf="@id/fistDay"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -18,6 +20,8 @@
     <TextView
         android:id="@+id/secondDate"
         android:layout_width="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#06506F"
         app:layout_constraintBottom_toTopOf="@id/secondDay"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -28,6 +32,8 @@
         android:id="@+id/thirdDate"
         app:layout_constraintBottom_toTopOf="@id/thirdDay"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:textStyle="bold"
+        android:textColor="#06506F"
         app:layout_constraintRight_toRightOf="parent"
         android:textSize="25sp"
         android:layout_width="wrap_content"
@@ -42,7 +48,39 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="40dp"
-        android:background="@drawable/round_view"/>
+        android:background="@drawable/round_view">
+
+        <ImageView
+            android:id="@+id/iv_fd"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="15dp"
+            android:foreground="@drawable/sun"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/temp_fd"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:text="30 °С"
+            app:layout_constraintTop_toTopOf="@id/iv_fd"
+            app:layout_constraintLeft_toRightOf="@id/iv_fd"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <TextView
+            android:id="@+id/d_fd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="clear sky"
+            app:layout_constraintTop_toBottomOf="@id/temp_fd"
+            app:layout_constraintLeft_toRightOf="@id/iv_fd"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/secondDay"
@@ -52,7 +90,39 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fistDay"
         app:layout_constraintBottom_toTopOf="@id/thirdDay"
-        android:background="@drawable/round_view"/>
+        android:background="@drawable/round_view">
+
+        <ImageView
+            android:id="@+id/iv_sd"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="15dp"
+            android:foreground="@drawable/sun"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/temp_sd"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:text="30 °С"
+            app:layout_constraintTop_toTopOf="@id/iv_sd"
+            app:layout_constraintLeft_toRightOf="@id/iv_sd"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <TextView
+            android:id="@+id/d_sd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="clear sky"
+            app:layout_constraintTop_toBottomOf="@id/temp_sd"
+            app:layout_constraintLeft_toRightOf="@id/iv_sd"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/thirdDay"
@@ -62,6 +132,38 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/secondDay"
-        android:background="@drawable/round_view"/>
+        android:background="@drawable/round_view">
+
+        <ImageView
+            android:id="@+id/iv_thd"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="15dp"
+            android:foreground="@drawable/sun"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/temp_thd"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:text="30 °С"
+            app:layout_constraintTop_toTopOf="@id/iv_thd"
+            app:layout_constraintLeft_toRightOf="@id/iv_thd"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <TextView
+            android:id="@+id/d_thd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="clear sky"
+            app:layout_constraintTop_toBottomOf="@id/temp_thd"
+            app:layout_constraintLeft_toRightOf="@id/iv_thd"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
