@@ -6,6 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".SecondActivity">
 
+    <TextView
+        android:id="@+id/firsDate"
+        android:layout_width="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/fistDay"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="25sp"
+        android:layout_height="wrap_content"
+        android:text="19 June"/>
+    <TextView
+        android:id="@+id/secondDate"
+        android:layout_width="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/secondDay"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="25sp"
+        android:layout_height="wrap_content"
+        android:text="20 June"/>
+    <TextView
+        android:id="@+id/thirdDate"
+        app:layout_constraintBottom_toTopOf="@id/thirdDay"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="21 June"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fistDay"
         android:layout_width="300dp"
@@ -13,7 +41,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/round_view"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
