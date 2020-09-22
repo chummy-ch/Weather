@@ -2,6 +2,7 @@ package com.example.weather;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener moreW = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.weather_layout);
+                Intent intent = new Intent(context, SecondActivity.class);
+                startActivity(intent);
             }
         };
 
