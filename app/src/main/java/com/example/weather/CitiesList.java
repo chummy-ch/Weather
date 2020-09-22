@@ -74,8 +74,8 @@ public class CitiesList{
     }
 
     public void SetMenu(){
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.support_simple_spinner_dropdown_item, data);
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.spinner_layout, data);
+        adapter.setDropDownViewResource(R.layout.list_spinner);
         spinner.setAdapter(adapter);
     }
 

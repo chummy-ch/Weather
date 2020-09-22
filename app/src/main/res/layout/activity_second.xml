@@ -11,35 +11,32 @@
         android:id="@+id/firsDate"
         android:layout_width="wrap_content"
         android:textStyle="bold"
-        android:textColor="#06506F"
+        android:textColor="#1B526B"
         app:layout_constraintBottom_toTopOf="@id/fistDay"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:textSize="25sp"
-        android:layout_height="wrap_content"
-        android:text="19 June"/>
+        android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/secondDate"
         android:layout_width="wrap_content"
         android:textStyle="bold"
-        android:textColor="#06506F"
+        android:textColor="#1B526B"
         app:layout_constraintBottom_toTopOf="@id/secondDay"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:textSize="25sp"
-        android:layout_height="wrap_content"
-        android:text="20 June"/>
+        android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/thirdDate"
         app:layout_constraintBottom_toTopOf="@id/thirdDay"
         app:layout_constraintLeft_toLeftOf="parent"
         android:textStyle="bold"
-        android:textColor="#06506F"
+        android:textColor="#1B526B"
         app:layout_constraintRight_toRightOf="parent"
         android:textSize="25sp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="21 June"/>
+        android:layout_height="wrap_content"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fistDay"
@@ -48,7 +45,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/round_view">
 
         <ImageView
