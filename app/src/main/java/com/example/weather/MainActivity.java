@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.concurrent.ExecutorService;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     public TextView field;
     public Button find;
     public TextView moreWeather;
+    public Spinner spinner;
 
 
     @Override
@@ -26,12 +28,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        find = findViewById(R.id.button);
-        field = findViewById(R.id.edit);
         context = this;
         moreWeather = findViewById(R.id.moreWeather);
-
-        getSupportActionBar().setTitle("");
+        spinner = findViewById(R.id.spinner);
 
         UIActivity uiActivity = new UIActivity(this);
 
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             WeatherLoader loader = new WeatherLoader(field.getText().toString(), context);
                             loader.GetWeather();
-                            CitiesList list = new CitiesList(context, getSupportActionBar());
+                            CitiesList list = new CitiesList(context, spinner);
                             list.DisplayCity(field.getText().toString().toUpperCase());
                         }
                     });
@@ -64,10 +63,10 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        final CitiesList list = new CitiesList(this, getSupportActionBar());
+        final CitiesList list = new CitiesList(this, spinner);
         list.SetMenu();
 
-        find.setOnClickListener(findWeather);
+        /*find.setOnClickListener(findWeather);*/
 
         Thread working = new Thread(new Runnable() {
             @Override
@@ -82,24 +81,23 @@ public class MainActivity extends AppCompatActivity {
         working.start();
     }
 
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // R.menu.mymenu is a reference to an xml file named mymenu.xml which should be inside your res/menu directory.
         // If you don't have res/menu, just create a directory named "menu" inside res
         getMenuInflater().inflate(R.menu.cities, menu);
         return super.onCreateOptionsMenu(menu);
-    }
+    }*/
 
     // handle button activities
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.addCity) {
-            if(field.getText().toString().length() < 2) return false;
-            CitiesList list = new CitiesList(context, getSupportActionBar());
-            list.AddCity(field.getText().toString().toUpperCase());
+            CitiesList list = new CitiesList(context, spinner);
+            list.AddCity();
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }

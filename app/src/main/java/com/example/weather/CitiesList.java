@@ -1,7 +1,11 @@
 package com.example.weather;
 
 import android.content.Context;
+import android.icu.text.UnicodeSetSpanner;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -17,16 +21,35 @@ import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class CitiesList implements  ActionBar.OnNavigationListener{
+public class CitiesList{
     String[] data;
     private Context context;
-    private ActionBar bar;
+    private Spinner spinner;
 
-    public CitiesList(Context context, ActionBar bar){
-        this.bar = bar;
+    public CitiesList(final Context context, Spinner spinner){
         this.context = context;
         data = new String[]{};
+        this.spinner = spinner;
         LoadCities();
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                final int index = i;
+                ExecutorService ser = Executors.newSingleThreadExecutor();
+                ser.submit(new Runnable() {
+                    @Override
+                    public void run() {
+                        WeatherLoader loader = new WeatherLoader(data[index], context);
+                        loader.GetWeather();
+                    }
+                });
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     public void DisplayCity(String city){
@@ -44,9 +67,13 @@ public class CitiesList implements  ActionBar.OnNavigationListener{
         data = copy;
     }
 
-    public void AddCity(String city){
+    public void AddCity(){
+        String city = spinner.getSelectedItem().toString().toUpperCase();
         for (String c : data) {
-            if(c.toLowerCase().trim().equals(city.toLowerCase().trim())) return;
+            if(c.toLowerCase().trim().equals(city.toLowerCase().trim())) {
+                Toast.makeText(context, "This city is already saved", Toast.LENGTH_LONG).show();
+                return;
+            }
         }
         String[] copy = data;
         data = new String[copy.length + 1];
@@ -60,24 +87,9 @@ public class CitiesList implements  ActionBar.OnNavigationListener{
     }
 
     public void SetMenu(){
-        bar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.support_simple_spinner_dropdown_item, data);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.spinner_layout, data);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        bar.setListNavigationCallbacks(adapter, this);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-        final int itempos = itemPosition;
-        ExecutorService service = Executors.newSingleThreadExecutor();
-        service.submit(new Runnable() {
-            @Override
-            public void run() {
-                WeatherLoader loader = new WeatherLoader(data[itempos], context);
-                loader.GetWeather();
-            }
-        });
-        return true;
+        spinner.setAdapter(adapter);
     }
 
     public void SaveCities(){
