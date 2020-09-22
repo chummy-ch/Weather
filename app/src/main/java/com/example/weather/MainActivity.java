@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     public Button find;
     public TextView moreWeather;
     public Spinner spinner;
+    public TextView saveWeatehr;
 
 
     @Override
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         context = this;
         moreWeather = findViewById(R.id.moreWeather);
         spinner = findViewById(R.id.spinner);
+        field = findViewById(R.id.field);
+        find = findViewById(R.id.search_button);
+        saveWeatehr = findViewById(R.id.saveButton);
 
         UIActivity uiActivity = new UIActivity(this);
 
@@ -66,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         final CitiesList list = new CitiesList(this, spinner);
         list.SetMenu();
 
-        /*find.setOnClickListener(findWeather);*/
+        find.setOnClickListener(findWeather);
 
         Thread working = new Thread(new Runnable() {
             @Override
@@ -79,25 +83,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         working.start();
+
+        saveWeatehr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ExecutorService ser = Executors.newSingleThreadExecutor();
+                ser.submit(new Runnable() {
+                    @Override
+                    public void run() {
+                        CitiesList list = new CitiesList(context, spinner);
+                        list.AddCity();
+                    }
+                });
+            }
+        });
     }
-
-   /* @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // R.menu.mymenu is a reference to an xml file named mymenu.xml which should be inside your res/menu directory.
-        // If you don't have res/menu, just create a directory named "menu" inside res
-        getMenuInflater().inflate(R.menu.cities, menu);
-        return super.onCreateOptionsMenu(menu);
-    }*/
-
-    // handle button activities
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.addCity) {
-            CitiesList list = new CitiesList(context, spinner);
-            list.AddCity();
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
 }

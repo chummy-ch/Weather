@@ -1,14 +1,11 @@
 package com.example.weather;
 
 import android.content.Context;
-import android.icu.text.UnicodeSetSpanner;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import androidx.appcompat.app.ActionBar;
 
 import com.google.gson.Gson;
 
@@ -18,29 +15,34 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class CitiesList{
-    String[] data;
+    ArrayList<String> data;
     private Context context;
     private Spinner spinner;
 
     public CitiesList(final Context context, Spinner spinner){
         this.context = context;
-        data = new String[]{};
+        data = new ArrayList<>();
         this.spinner = spinner;
         LoadCities();
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, final int i, long l) {
                 final int index = i;
                 ExecutorService ser = Executors.newSingleThreadExecutor();
                 ser.submit(new Runnable() {
                     @Override
                     public void run() {
-                        WeatherLoader loader = new WeatherLoader(data[index], context);
+                        WeatherLoader loader = new WeatherLoader(data.get(index), context);
                         loader.GetWeather();
+                        String city = data.get(i);
+                        data.remove(i);
+                        data.add(0, city);
+                        SaveCities();
                     }
                 });
             }
@@ -53,41 +55,26 @@ public class CitiesList{
     }
 
     public void DisplayCity(String city){
-        for (String c : data) {
-            if(c.toLowerCase().trim().equals(city.toLowerCase().trim())) return;
-        }
-        String[] copy = data;
         city = city.toUpperCase();
-        data = new String[copy.length + 1];
-        data[0] = city;
-        for(int i = 0; i < copy.length; i++){
-            data[i + 1] = copy[i];
-        }
+        if(data.contains(city)) return;
+        data.add(0, city);
         SetMenu();
-        data = copy;
     }
 
     public void AddCity(){
         String city = spinner.getSelectedItem().toString().toUpperCase();
-        for (String c : data) {
-            if(c.toLowerCase().trim().equals(city.toLowerCase().trim())) {
-                Toast.makeText(context, "This city is already saved", Toast.LENGTH_LONG).show();
-                return;
-            }
+        System.out.println(city);
+        if(data.contains(city)){
+            Toast.makeText(context, "The city is already saved", Toast.LENGTH_LONG).show();
+            return;
         }
-        String[] copy = data;
-        data = new String[copy.length + 1];
-        data[0] = city;
-        for(int i = 0; i < copy.length; i++){
-            data[i + 1] = copy[i];
-        }
-        SetMenu();
+        data.add(0, city);
         SaveCities();
         Toast.makeText(context, "The city is saved", Toast.LENGTH_SHORT).show();
     }
 
     public void SetMenu(){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.spinner_layout, data);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.support_simple_spinner_dropdown_item, data);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
@@ -122,5 +109,4 @@ public class CitiesList{
             e.printStackTrace();
         }
     }
-
 }

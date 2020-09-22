@@ -22,17 +22,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:background="@drawable/round_view"
+            android:background="@null"
             android:text="SAVE CITY"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <EditText
+            android:id="@+id/field"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/saveButton"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
         <Button
             android:id="@+id/search_button"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:background="@null"
             android:foreground="@android:drawable/ic_menu_search"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -155,38 +165,17 @@
         android:background="@drawable/round_view"
         android:textSize="20sp"/>
 
-   <!-- <EditText
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:id="@+id/edit"
-        android:hint="City name"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="51dp"
-        android:layout_height="39dp"
-        android:background="#FFFFFF"
-        android:drawableBottom="@android:drawable/ic_menu_search"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/edit"
-        android:layout_marginBottom="10dp"/>-->
-
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:background="@android:color/transparent"
         android:id="@+id/spinner"
+        android:gravity="center"
         android:textAlignment="center"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
-
-
+    
 
 </androidx.constraintlayout.widget.ConstraintLayout>
