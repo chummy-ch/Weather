@@ -6,4 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".SecondActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fistDay"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/round_view"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/secondDay"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fistDay"
+        app:layout_constraintBottom_toTopOf="@id/thirdDay"
+        android:background="@drawable/round_view"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/thirdDay"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/secondDay"
+        android:background="@drawable/round_view"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
