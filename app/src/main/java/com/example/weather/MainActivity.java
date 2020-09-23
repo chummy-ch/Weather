@@ -4,10 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.method.KeyListener;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,7 +23,7 @@ import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
     public Context context;
-    public TextView field;
+    public EditText field;
     public Button find;
     public TextView moreWeather;
     public Spinner spinner;
@@ -97,5 +103,32 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
+        View.OnKeyListener enterPress = new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                System.out.println(keyEvent.getKeyCode());
+                if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (i ==
+                        KeyEvent.KEYCODE_ENTER)) {
+                    if (field.getText().toString().trim().length() > 2) {
+                        ExecutorService service = Executors.newSingleThreadExecutor();
+                        service.submit(new Runnable() {
+                            @Override
+                            public void run() {
+                                WeatherLoader loader = new WeatherLoader(field.getText().toString(), context);
+                                loader.GetWeather();
+                                CitiesList list = new CitiesList(context, spinner);
+                                list.DisplayCity(field.getText().toString().toUpperCase());
+                            }
+                        });
+                    }
+                    else Toast.makeText(context, "Fill the field", Toast.LENGTH_LONG).show();
+                    return true;
+                }
+                return false;
+            }
+        };
+
+        field.setOnKeyListener(enterPress);
     }
 }

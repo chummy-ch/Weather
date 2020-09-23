@@ -32,6 +32,7 @@
         <EditText
             android:id="@+id/field"
             android:layout_width="150dp"
+            android:inputType="text"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             app:layout_constraintLeft_toLeftOf="parent"
