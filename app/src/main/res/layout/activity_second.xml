@@ -60,10 +60,10 @@
 
         <TextView
             android:id="@+id/temp_fd"
-            android:layout_width="120dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="35sp"
-            android:text="30 °С"
+            android:textSize="30sp"
+            android:text="30°С / 15°С"
             app:layout_constraintTop_toTopOf="@id/iv_fd"
             app:layout_constraintLeft_toRightOf="@id/iv_fd"
             app:layout_constraintRight_toRightOf="parent"/>
@@ -102,10 +102,10 @@
 
         <TextView
             android:id="@+id/temp_sd"
-            android:layout_width="120dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="35sp"
-            android:text="30 °С"
+            android:textSize="30sp"
+            android:text="30°С / 15°С"
             app:layout_constraintTop_toTopOf="@id/iv_sd"
             app:layout_constraintLeft_toRightOf="@id/iv_sd"
             app:layout_constraintRight_toRightOf="parent"/>
@@ -144,10 +144,10 @@
 
         <TextView
             android:id="@+id/temp_thd"
-            android:layout_width="120dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="35sp"
-            android:text="30 °С"
+            android:textSize="30sp"
+            android:text="30°С / 15°С"
             app:layout_constraintTop_toTopOf="@id/iv_thd"
             app:layout_constraintLeft_toRightOf="@id/iv_thd"
             app:layout_constraintRight_toRightOf="parent"/>
