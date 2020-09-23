@@ -16,6 +16,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -42,7 +43,6 @@ public class CitiesList{
                         String city = data.get(i);
                         data.remove(i);
                         data.add(0, city);
-                        SaveCities();
                     }
                 });
             }
@@ -56,14 +56,17 @@ public class CitiesList{
 
     public void DisplayCity(String city){
         city = city.toUpperCase();
-        if(data.contains(city)) return;
-        data.add(0, city);
+        if(data.contains(city)) {
+            data.remove(city);
+            data.add(0, city);
+            SaveCities();
+        }
+        else data.add(0, city);
         SetMenu();
     }
 
     public void AddCity(){
         String city = spinner.getSelectedItem().toString().toUpperCase();
-        System.out.println(city);
         if(data.contains(city)){
             Toast.makeText(context, "The city is already saved", Toast.LENGTH_LONG).show();
             return;
