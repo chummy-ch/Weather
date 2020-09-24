@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/gradient_view">
+
+    <TextView
+        android:id="@+id/first_date"
+        android:textStyle="bold"
+        android:textColor="#1B526B"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"/>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:background="@drawable/round_view"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/fIV"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/sun" />
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/temp_fd"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:text="30°С / 15°С" />
+
+            <TextView
+                android:id="@+id/d_fd"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:text="clear sky"
+                android:gravity="center"
+                android:textSize="25sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/second_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#1B526B"
+        android:layout_marginTop="40dp"
+        android:textSize="30sp"/>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:background="@drawable/round_view"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/sIV"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/sun" />
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/temp_sd"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:text="30°С / 15°С" />
+
+            <TextView
+                android:id="@+id/d_sd"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:text="clear sky"
+                android:gravity="center"
+                android:textSize="25sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/third_date"
+        android:textStyle="bold"
+        android:textColor="#1B526B"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:textSize="30sp"/>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:background="@drawable/round_view"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/tIV"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/sun" />
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/temp_thd"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:text="30°С / 15°С" />
+
+            <TextView
+                android:id="@+id/d_thd"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:text="clear sky"
+                android:gravity="center"
+                android:textSize="25sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

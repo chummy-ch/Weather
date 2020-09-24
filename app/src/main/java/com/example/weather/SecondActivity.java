@@ -19,11 +19,11 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activitty_weather);
 
-        fd = findViewById(R.id.firsDate);
-        sd = findViewById(R.id.secondDate);
-        td = findViewById(R.id.thirdDate);
+        fd = findViewById(R.id.first_date);
+        sd = findViewById(R.id.second_date);
+        td = findViewById(R.id.third_date);
 
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, 1);
