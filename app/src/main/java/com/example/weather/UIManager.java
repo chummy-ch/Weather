@@ -24,13 +24,7 @@ public class UIManager {
     private TextView humidity;
 
     public UIManager(){
-        this.activity = UIActivity.mianActivity;
-        temp = activity.findViewById(R.id.temp);
-        desc = activity.findViewById(R.id.disc);
-        windSpeed = activity.findViewById(R.id.windTv);
-        sky = activity.findViewById(R.id.weatherImage);
-        pressure = activity.findViewById(R.id.pressureTv);
-        humidity = activity.findViewById(R.id.waterTv);
+
     }
 
     public void UpdateUI(ImageView view, TextView temp, TextView disc, ShortWeather weather){
@@ -62,6 +56,13 @@ public class UIManager {
     }
 
     public Handler GetWeatherHandler(){
+        activity = UIActivity.mianActivity;
+        temp = activity.findViewById(R.id.temp);
+        desc = activity.findViewById(R.id.disc);
+        windSpeed = activity.findViewById(R.id.windTv);
+        sky = activity.findViewById(R.id.weatherImage);
+        pressure = activity.findViewById(R.id.pressureTv);
+        humidity = activity.findViewById(R.id.waterTv);
         Handler weatherHandler = new Handler(Looper.getMainLooper()){
             public void handleMessage(Message msg){
                 Weather weather = (Weather) msg.obj;

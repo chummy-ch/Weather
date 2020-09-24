@@ -81,7 +81,7 @@ class ShortWeatherLoader {
             weather.main = jsonArray.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("main");
             if(images.containsKey(weather.main)) weather.image = images.get(weather.main);
             else weather.image = R.drawable.cloud;
-            weather.disc = jsonArray.getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("description");
+            weather.disc = jsonArray.getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("description");
             dailyWeather.add(weather);
         } catch (JSONException e) {
             e.printStackTrace();
