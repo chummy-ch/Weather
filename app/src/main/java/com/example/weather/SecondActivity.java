@@ -28,6 +28,8 @@ public class SecondActivity extends AppCompatActivity {
 
         final String cord = getIntent().getStringExtra("c");
 
+        UIActivity uiActivity = new UIActivity(this, 0);
+
         fd = findViewById(R.id.first_date);
         sd = findViewById(R.id.second_date);
         td = findViewById(R.id.third_date);

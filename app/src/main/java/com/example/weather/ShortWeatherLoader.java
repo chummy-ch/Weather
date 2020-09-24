@@ -104,5 +104,6 @@ class ShortWeatherLoader {
                 e.printStackTrace();
             }
         }
+        ui.UI(dailyWeather);
     }
 }

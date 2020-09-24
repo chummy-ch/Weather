@@ -4,9 +4,10 @@ import android.app.Activity;
 
 public class UIActivity {
 
-    public static Activity activity;
+    public static Activity mianActivity;
+    public static Activity weatherActivity;
 
-    public UIActivity(Activity activity){
-        UIActivity.activity = activity;}
+    public UIActivity(Activity activity){UIActivity.mianActivity = activity;}
 
+    public UIActivity(Activity activity, int none){UIActivity.weatherActivity = activity;}
 }

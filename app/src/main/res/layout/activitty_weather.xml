@@ -24,8 +24,7 @@
         <ImageView
             android:id="@+id/fIV"
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/sun" />
+            android:layout_height="100dp" />
 
         <LinearLayout
             android:layout_width="150dp"
@@ -37,14 +36,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:textSize="25sp"
-                android:gravity="center"
-                android:text="30°С / 15°С" />
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/d_fd"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:text="clear sky"
                 android:gravity="center"
                 android:textSize="25sp"/>
         </LinearLayout>
@@ -69,8 +66,7 @@
         <ImageView
             android:id="@+id/sIV"
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/sun" />
+            android:layout_height="100dp" />
 
         <LinearLayout
             android:layout_width="150dp"
@@ -82,14 +78,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:textSize="25sp"
-                android:gravity="center"
-                android:text="30°С / 15°С" />
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/d_sd"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:text="clear sky"
                 android:gravity="center"
                 android:textSize="25sp"/>
         </LinearLayout>
@@ -114,8 +108,7 @@
         <ImageView
             android:id="@+id/tIV"
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/sun" />
+            android:layout_height="100dp" />
 
         <LinearLayout
             android:layout_width="150dp"
@@ -127,14 +120,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:textSize="25sp"
-                android:gravity="center"
-                android:text="30°С / 15°С" />
+                android:gravity="center"/>
 
             <TextView
                 android:id="@+id/d_thd"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:text="clear sky"
                 android:gravity="center"
                 android:textSize="25sp"/>
         </LinearLayout>
