@@ -1,6 +1,7 @@
 package com.example.weather;
 
 import android.content.Context;
+import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,12 +23,15 @@ import java.util.concurrent.Executors;
 
 public class CitiesList{
     ArrayList<String> data;
+    ArrayList<String> cities;
     private Context context;
     private Spinner spinner;
 
     public CitiesList(final Context context, Spinner spinner){
         this.context = context;
         data = new ArrayList<>();
+        cities = new ArrayList<>();
+        cities.add("none");
         this.spinner = spinner;
         LoadCities();
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -38,11 +42,11 @@ public class CitiesList{
                 ser.submit(new Runnable() {
                     @Override
                     public void run() {
-                        WeatherLoader loader = new WeatherLoader(data.get(index), context);
+                        WeatherLoader loader = new WeatherLoader(cities.get(index), context);
                         loader.GetWeather();
-                        String city = data.get(i);
-                        data.remove(i);
-                        data.add(0, city);
+                        String city = cities.get(i);
+                        cities.remove(i);
+                        cities.add(0, city);
                     }
                 });
             }
@@ -56,33 +60,45 @@ public class CitiesList{
 
     public void DisplayCity(String city){
         city = city.toUpperCase();
-        if(data.contains(city)) {
-            data.remove(city);
-            data.add(0, city);
-            SaveCities();
+        System.out.println(city);
+        if(data.size() != 0)
+        cities = data;
+        if(cities.contains(city)){
+            cities.remove(city);
+            cities.add(0, city);
+            if(data.contains(city)) {
+                data = cities;
+                SaveCities();
+            }
         }
-        else data.add(0, city);
-        SetMenu();
+        else{
+            if(cities.contains("none")) cities.remove("none");
+            cities.add(0, city);
+            SetMenu();
+            System.out.println("else");
+        }
     }
 
     public void AddCity(){
         String city = spinner.getSelectedItem().toString().toUpperCase();
-        if(data.contains(city)){
-            Toast.makeText(context, "The city is already saved", Toast.LENGTH_LONG).show();
-            return;
+        if(data.size() != 0)
+        cities = data;
+        if(cities.contains(city)) Toast.makeText(context, "This city is already saved", Toast.LENGTH_LONG).show();
+        else{
+            data.add(0, city);
+            cities = data;
+            SaveCities();
         }
-        data.add(0, city);
-        SaveCities();
-        Toast.makeText(context, "The city is saved", Toast.LENGTH_SHORT).show();
     }
 
     public void SetMenu(){
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.spinner_layout, data);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.spinner_layout, cities);
         adapter.setDropDownViewResource(R.layout.list_spinner);
         spinner.setAdapter(adapter);
     }
 
     public void SaveCities(){
+        data = cities;
         String jsonString = new Gson().toJson(data);
         try{
             String filePath = context.getFilesDir().getPath().toString() + "cities.txt";
@@ -111,5 +127,7 @@ public class CitiesList{
         } catch (IOException e) {
             e.printStackTrace();
         }
+        if(data.size() > 0)
+        cities = data;
     }
 }

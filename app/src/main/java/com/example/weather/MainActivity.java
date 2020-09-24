@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
         View.OnKeyListener enterPress = new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                System.out.println(keyEvent.getKeyCode());
                 if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && (i ==
                         KeyEvent.KEYCODE_ENTER)) {
                     if (field.getText().toString().trim().length() > 2) {
