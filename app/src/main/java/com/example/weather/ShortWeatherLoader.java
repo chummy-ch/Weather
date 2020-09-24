@@ -15,22 +15,29 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 class ShortWeatherLoader {
-    private String city;
+    private String cord;
+    private String lat, lon;
     private Context context;
     private ShortWeather weather;
     private String weatherJson;
     private ArrayList<ShortWeather> dailyWeather;
 
-    public ShortWeatherLoader(Context context, String city){
+    public ShortWeatherLoader(Context context, String cord){
         this.context = context;
-        this.city = city;
+        this.cord = cord;
         dailyWeather = new ArrayList<>();
+        GetCord();
+    }
+
+    private void GetCord(){
+        lat = cord.substring(0, cord.indexOf('&'));
+        lon = cord.substring(cord.indexOf("&") + 1, cord.length());
     }
 
     private void LoadWeather(){
         RequestQueue queue = Volley.newRequestQueue(context);
         Token t = new Token();
-        String url = "https://api.openweathermap.org/data/2.5/weather?q="+ city + "&appid=" + t.token;
+        String url = "https://api.openweathermap.org/data/2.5/weather?q="+ cord + "&appid=" + t.token;
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

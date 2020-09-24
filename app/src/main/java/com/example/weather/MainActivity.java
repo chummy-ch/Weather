@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         moreWeather.setOnClickListener(moreW);
-        
+
         final View.OnClickListener findWeather = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
