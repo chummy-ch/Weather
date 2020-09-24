@@ -21,6 +21,9 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activitty_weather);
 
+        String cord = getIntent().getStringExtra("c");
+        System.out.println(cord);
+
         fd = findViewById(R.id.first_date);
         sd = findViewById(R.id.second_date);
         td = findViewById(R.id.third_date);

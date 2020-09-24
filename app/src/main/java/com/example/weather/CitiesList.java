@@ -43,7 +43,8 @@ public class CitiesList{
                     @Override
                     public void run() {
                         WeatherLoader loader = new WeatherLoader(cities.get(index), context);
-                        loader.GetWeather();
+                        Weather weather = loader.GetWeather();
+                        MainActivity.weather = weather;
                         String city = cities.get(i);
                         cities.remove(i);
                         cities.add(0, city);
@@ -73,9 +74,9 @@ public class CitiesList{
         }
         else{
             if(cities.contains("none")) cities.remove("none");
+            else if (cities.contains("NONE")) cities.remove("NONE");
             cities.add(0, city);
             SetMenu();
-            System.out.println("else");
         }
     }
 

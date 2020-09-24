@@ -12,6 +12,7 @@ public class Weather {
     public int weatherImage;
     public String pressure;
     public String humidity;
+    public String lat, lon;
 
     public void setHumidity(String humidity){this.humidity = humidity;}
 

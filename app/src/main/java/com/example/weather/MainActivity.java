@@ -5,21 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.text.method.KeyListener;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.security.Provider;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -30,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
     public Button find;
     public TextView moreWeather;
     public Spinner spinner;
-    public TextView saveWeatehr;
+    public TextView saveWeather;
+    public static Weather weather;
 
 
     @Override
@@ -43,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         field = findViewById(R.id.field);
         find = findViewById(R.id.search_button);
-        saveWeatehr = findViewById(R.id.saveButton);
+        saveWeather = findViewById(R.id.saveButton);
 
         UIActivity uiActivity = new UIActivity(this);
 
@@ -51,12 +46,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, SecondActivity.class);
+                intent.putExtra("c", weather.lat + "&" + weather.lon);
                 startActivity(intent);
             }
         };
 
         moreWeather.setOnClickListener(moreW);
-
+        
         final View.OnClickListener findWeather = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             WeatherLoader loader = new WeatherLoader(field.getText().toString(), context);
-                            loader.GetWeather();
+                            weather = loader.GetWeather();
                             CitiesList list = new CitiesList(context, spinner);
                             list.DisplayCity(field.getText().toString().toUpperCase());
                         }
@@ -93,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         });
         working.start();
 
-        saveWeatehr.setOnClickListener(new View.OnClickListener() {
+        saveWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ExecutorService ser = Executors.newSingleThreadExecutor();
@@ -121,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 WeatherLoader loader = new WeatherLoader(field.getText().toString(), context);
-                                loader.GetWeather();
+                                weather = loader.GetWeather();
                                 CitiesList list = new CitiesList(context, spinner);
                                 list.DisplayCity(field.getText().toString().toUpperCase());
                             }

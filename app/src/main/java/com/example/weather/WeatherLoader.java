@@ -79,16 +79,18 @@ public class WeatherLoader {
             weather.setDescription(weatherJsonArray.getJSONObject(0).getString("description"));
             weather.setPressure(jsonObject.getJSONObject("main").getString("pressure"));
             weather.setHumidity(jsonObject.getJSONObject("main").getString("humidity"));
-            weather.setCity(city);
+            weather.lat = jsonObject.getJSONObject("coord").getString("lat");
+            weather.lon = jsonObject.getJSONObject("coord").getString("lon");
             if(images.containsKey(weather.main)) weather.weatherImage = images.get(weather.main);
             else weather.weatherImage = R.drawable.cloud;
+            weather.setCity(city);
             SWeather();
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    public void GetWeather(){
+    public Weather GetWeather(){
         UIManager ui = new UIManager();
         weather = new Weather();
         ExecutorService ser = Executors.newSingleThreadExecutor();
@@ -108,6 +110,7 @@ public class WeatherLoader {
         Handler handler = ui.GetWeatherHandler();
         Message msg = handler.obtainMessage(0, weather);
         handler.sendMessage(msg);
+        return weather;
     }
 
     public void SWeather(){
