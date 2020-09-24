@@ -41,7 +41,7 @@ public class WeatherLoader {
     public WeatherLoader(String city, Context context){
         this.context = context;
         this.city = city;
-        images = new HashMap<String, Integer>(){{put("Clear", R.drawable.sun); put("Rain", R.drawable.rain); put("Snow", R.drawable.snowy);}};
+        images = new HashMap<String, Integer>(){{put("Clear", R.drawable.sun); put("Rain", R.drawable.rain); put("Snow", R.drawable.snowy); put("Clouds", R.drawable.cloud);}};
     }
 
     public WeatherLoader(Context context){this.context = context;}

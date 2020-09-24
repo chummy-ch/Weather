@@ -30,6 +30,8 @@ public class UIManager {
         humidity = activity.findViewById(R.id.waterTv);
     }
 
+
+
     public Handler GetWeatherHandler(){
         weatherHandler = new Handler(Looper.getMainLooper()){
             public void handleMessage(Message msg){

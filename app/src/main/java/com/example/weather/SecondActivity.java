@@ -47,6 +47,7 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void run() {
                 ShortWeatherLoader loader = new ShortWeatherLoader(context, cord);
+                loader.GetWeather();
             }
         });
 
