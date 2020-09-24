@@ -1,11 +1,8 @@
 package com.example.weather;
 
 import android.content.Context;
-import android.icu.text.UnicodeSetSpanner;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
-import android.provider.Contacts;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -26,7 +23,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
